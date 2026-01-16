@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>I’m Sorry ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 20px 0;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    font-family: 'Comic Sans MS', 'Segoe UI', sans-serif;
+    overflow-y: auto;   /* ✅ SCROLL ENABLE */
+}
+
+/* CARD */
+.card {
+    background: white;
+    width: 90%;
+    max-width: 440px;
+    margin: 0 auto 40px auto;  /* ✅ CENTER + BOTTOM SPACE */
+    padding: 26px;
+    border-radius: 22px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    position: relative;
+    z-index: 2;
+}
+
+.heart-top {
+    font-size: 55px;
+}
+
+h1 {
+    color: #ff4d6d;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #444;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* BUTTONS */
+.music-btn, .forgive-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 14px;
+}
+
+.music-btn {
+    background: #ff8fa3;
+    color: white;
+}
+
+.forgive-btn {
+    background: #ff4d6d;
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+/* ❤️ FLOATING HEARTS */
+.floating-hearts span {
+    position: fixed;
+    bottom: -30px;
+    font-size: 22px;
+    animation: floatUp 5s linear forwards;
+    z-index: 1;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 MUSIC -->
+<audio id="bgMusic" loop>
+    <source src="sorry-music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+    <div class="heart-top">❤️</div>
+    <h1>I’m Sorry</h1>
+
+    <p>
+        Bachaa im sorry and i know sorry nhi chahiye aapko but babu overthinking toh meri wajah se hai na.<br><br>
+
+        Meri intention was never ever to hurt you or to make you cry.
+        I love you bachaa and i want to be with you foreverr.<br><br>
+
+        Aap believe ni kroge, hn hn bataya hai maine bohot baar but mai humesha hume imagine krta hu har jagah —
+        ki hum idhar hote toh ye khaate ya idhar jaate ya baate krte dher saari,
+        matlab unlimited cheeze hoti hai jo imagine constantly hoti hai.<br><br>
+
+        And this feeling of being in love with you is soo soo good.
+        You mean so much to me, you are my world, my cutu baby,
+        wo smile dikha do apni pyaari si bohot din ho gaye.<br><br>
+
+        <strong>I love you Laxmi ❤️</strong>
+    </p>
+
+    <!-- 🎵 MUSIC BUTTON -->
+    <button class="music-btn" onclick="toggleMusic()">Play ❤️</button>
+
+    <!-- ❤️ FORGIVE BUTTON -->
+    <button class="forgive-btn" onclick="forgive()">Click if you forgive me 💌</button>
+
+    <p id="msg" class="hidden">
+        Thank you ❤️<br>
+        I promise to do better and always be there for you.
+    </p>
+</div>
+
+<!-- ❤️ HEART CONTAINER -->
+<div class="floating-hearts"></div>
+
+<script>
+let playing = false;
+
+function toggleMusic() {
+    const music = document.getElementById("bgMusic");
+    const btn = document.querySelector(".music-btn");
+
+    if (!playing) {
+        music.volume = 0.4;
+        music.play();
+        btn.innerText = "⏸ Pause Music";
+        playing = true;
+    } else {
+        music.pause();
+        btn.innerText = "🎵 Play Music";
+        playing = false;
+    }
+}
+
+function forgive() {
+    document.getElementById("msg").classList.remove("hidden");
+    createHearts();
+}
+
+function createHearts() {
+    const container = document.querySelector(".floating-hearts");
+
+    for (let i = 0; i < 20; i++) {
+        const heart = document.createElement("span");
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 2 + 4) + "s";
+        container.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 5000);
+    }
+}
+</script>
+
+</body>
+</html>
